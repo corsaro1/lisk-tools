@@ -8,7 +8,7 @@ PRT2=":8000"
 
 pbk="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
-while true; do
+
 HEIGHT1=$(curl --connect-timeout 3 -s "http://"$SRV1""$PRT1"/api/loader/status/sync"| jq '.height')
 HEIGHT2=$(curl --connect-timeout 3 -s "http://"$SRV2""$PRT2"/api/loader/status/sync"| jq '.height')
 
@@ -143,5 +143,4 @@ if [ "$HEIGHT2" -gt "$HEIGHT1" ]
 	
 fi
 
-   sleep 30
-   done
+

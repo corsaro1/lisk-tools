@@ -2,7 +2,7 @@ SECRET="\"YOUR SECRET HERE\""
 SRV1="xxx.xxx.xxx.xxx"
 SRV2="xxx.xxx.xxx.xxx"
 SRV3="xxx.xxx.xxx.xxx"
-SRV4="xxx.xxx.xxx.xxx"
+
 
 PORT="8000"
 SSLPORT="2443"

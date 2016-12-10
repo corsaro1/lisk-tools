@@ -3,7 +3,6 @@ SRV1="xxx.xxx.xxx.xxx"
 SRV2="xxx.xxx.xxx.xxx"
 SRV3="xxx.xxx.xxx.xxx"
 
-
 PORT="8000"
 SSLPORT="2443"
 DELEGATENAME="corsaro"
@@ -105,18 +104,18 @@ if [ "$FORGE1" = "false" -a "$FORGE2" = "false" -a "$FORGE3" = "false" ]
    then
      if [ "$HEIGHT1" -gt "0" ]
      then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
     echo ""
     echo "condizione di emergenza 1a"
      
      elif [ "$HEIGHT2" -gt "0" ]
      then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
       echo ""
     echo "condizione di emergenza 1b"
    
@@ -124,9 +123,9 @@ if [ "$FORGE1" = "false" -a "$FORGE2" = "false" -a "$FORGE3" = "false" ]
      
      elif [ "$HEIGHT3" -gt "0" ]
      then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/enable
          echo ""
     echo "condizione di emergenza 1c"
 
@@ -143,9 +142,9 @@ fi
 
 if [ "$FORGE1" = "true" -a "$FORGE2" = "true" -a "$FORGE3" = "false" -o "$FORGE1" = "true" -a "$FORGE2" = "false" -a "$FORGE3" = "true" -o "$FORGE1" = "false" -a "$FORGE2" = "true" -a "$FORGE3" = "true" ]
    then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
     echo ""
     echo "condizione di emergenza 2"
@@ -170,9 +169,9 @@ if [ "$HEIGHT1" -eq "$HEIGHT2" -a "$HEIGHT1" -gt "$HEIGHT3" ]
           diff=$(( $HEIGHT1 - $HEIGHT3 ))
      if [ "$diff" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV1"  "  "  
     echo   is greather caso 1
@@ -189,9 +188,9 @@ if [ "$HEIGHT1" -eq "$HEIGHT3" -a "$HEIGHT1" -gt "$HEIGHT2" ]
           diff=$(( $HEIGHT1 - $HEIGHT2 ))
      if [ "$diff" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV1"  "  "  
     echo   is greather caso 2
@@ -207,9 +206,9 @@ if [ "$HEIGHT2" -eq "$HEIGHT3" -a "$HEIGHT2" -gt "$HEIGHT1" ]
           diff=$(( $HEIGHT2 - $HEIGHT1 ))
      if [ "$diff" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV2"  "  "  
     echo   is greather caso 3
@@ -228,9 +227,9 @@ if [ "$HEIGHT1" -gt "$HEIGHT2" -a "$HEIGHT1" -gt "$HEIGHT3" ]
           diff2=$(( $HEIGHT1 - $HEIGHT3 ))
      if [ "$diff" -gt "3" -a "$diff2" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV1"  "  "  
     echo   is greather caso 4
@@ -247,9 +246,9 @@ if [ "$HEIGHT2" -gt "$HEIGHT1" -a "$HEIGHT2" -gt "$HEIGHT3" ]
           diff2=$(( $HEIGHT2 - $HEIGHT1 ))
      if [ "$diff" -gt "3" -a "$diff2" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV2"  "  "  
     echo   is greather caso 5
@@ -267,9 +266,9 @@ if [ "$HEIGHT3" -gt "$HEIGHT1" -a "$HEIGHT3" -gt "$HEIGHT2" ]
           diff2=$(( $HEIGHT3 - $HEIGHT2 ))
      if [ "$diff" -gt "3" -a "$diff2" -gt "3" ]
     then
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV3":"$SSLPORT"/api/delegates/forging/enable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
-    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d @goingup https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV3":"$SSLPORT"/api/delegates/forging/enable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV1":"$SSLPORT"/api/delegates/forging/disable
+    curl --connect-timeout 6 -k -H "Content-Type: application/json" -X POST -d '{"secret":'"$SECRET"'}' https://"$SRV2":"$SSLPORT"/api/delegates/forging/disable
 
      echo "$SRV3"  "  "  
     echo   is greather caso 6

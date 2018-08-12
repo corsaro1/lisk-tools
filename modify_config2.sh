@@ -7,7 +7,7 @@ sudo apt-get install jq
 manually modify "encryptedPassphrase" and "publicKey" accordling with your configuration
 
 usage:
-bash modify_config.sh
+bash modify_config2.sh
 */
 
 configfile='config.json'

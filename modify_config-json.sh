@@ -4,6 +4,9 @@
 ********************
 jq needed. Install it with:
 sudo apt-get install jq
+
+manually modify "encryptedPassphrase" and "publicKey"
+
 ********************
 */
 

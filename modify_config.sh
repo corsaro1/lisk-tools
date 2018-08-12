@@ -4,10 +4,10 @@ setup:
 install jq:
 sudo apt-get install jq
 
-manually modify "encryptedPassphrase" and "publicKey" accordling with your configuration
+manually modify "encryptedPassphrase", "publicKey" and "external_ip" accordling with your configuration
 
 usage:
-bash modify_config2.sh
+bash modify_config.sh
 */
 
 configfile='config.json'

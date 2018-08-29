@@ -1,5 +1,5 @@
 {
-	"port":":7000",
+	"port":":8000",
 	"https_port":":2443",
 	"lisk_directory":"~/lisk-main",
 	"pbk":"ac09bc40c889f688f9158cca1fcfcdf6320f501242e0f7088d52a5077084ccba",

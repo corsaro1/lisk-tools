@@ -2,8 +2,7 @@
 #!/bin/bash
 
 ## Check for config file
-CONFIG_FILE="mrv_config_core-1.0.json"
-## https://raw.githubusercontent.com/corsaro1/lisk-tools/master/mrv_config_core-1.0.json
+CONFIG_FILE="mrv_config_core-1.0.json" ## https://raw.githubusercontent.com/corsaro1/lisk-tools/master/mrv_config_core-1.0.json
 
 ##  Read config file
 CONFIGFILE=$(cat "$CONFIG_FILE")

@@ -13,6 +13,8 @@ telegram_contact="xx_yy"
 s1=$(curl -s "https://node01.lisk.io/api/delegates?address=$delegate_address" | jq .data[0].missedBlocks)
 echo $s1
 
+/snap/bin/telegram-cli -W -e "msg $telegram_contact alert check for missed blocks started. $s1 missed until now"
+
 while true; do
 
 	sleep 60

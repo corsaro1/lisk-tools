@@ -5,6 +5,28 @@
 #sudo apt-get install snapd
 #sudo snap install telegram-cli
 	###then configure telegram-cli
+	
+	
+### first time launch:
+### /snap/bin/telegram-cli 
+
+### phone number:    #better to use a dedicated phone number for this ubuntu account)
+
+### once telegram-cli is configured prompt is shown
+### >
+
+### then add your "smartphone" telegram account, where you want to receive alerts, with:
+
+### add_contact +xxxxxxxxx xx yy
+
+### then exit from prompt with ctrl+c
+
+### and test if everything works
+
+### /snap/bin/telegram-cli -W -e "msg xx_yy hi how are you"
+
+### > contact_list to see all contacts
+
 
 
 #!/bin/sh

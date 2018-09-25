@@ -2,6 +2,9 @@
 ## sudo apt install mailutils
     ###then choose: internet site
 
+#sudo apt-get install snapd
+#sudo snap install telegram-cli
+	###then configure telegram-cli
 
 
 #!/bin/sh

@@ -1,5 +1,5 @@
 ## sudo apt install jq
-## sudo apt install mailutils
+## sudo apt install mailutils (optional, only if you want to use email)
     ###then choose: internet site
 
 #sudo apt-get install snapd
@@ -54,7 +54,7 @@ while true; do
     else
      
 		echo "alert you missed a block"
-		mail -s "block missed" $your_email < /dev/null
+		## mail -s "block missed" $your_email < /dev/null ## uncomment if you want to use email too
 		/snap/bin/telegram-cli -W -e "msg $telegram_contact you missed a new block. You are at $s2 missed now"
 		sleep 10
 		s1=$(curl -s "https://node01.lisk.io/api/delegates?address=$delegate_address" | jq .data[0].missedBlocks)

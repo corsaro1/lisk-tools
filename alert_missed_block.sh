@@ -1,5 +1,5 @@
 ## sudo apt install jq
-## sudo apt install mailutils (optional, only if you want to use email)
+## sudo apt install mailutils ## (optional, only if you want to use email)
     ###then choose: internet site
 
 #sudo apt-get install snapd

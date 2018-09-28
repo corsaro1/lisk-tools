@@ -46,6 +46,8 @@ if [ $datex1 \> $datex2 -a $datex1 \> $datex3 -a $datex1 \> $datex4 -a $datex1 \
 then
    echo "latest snapshot is on gr33ndrag0n repo";
    echo "https://snapshot.lisknode.io/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://snapshot.lisknode.io/"
 
 fi;
 
@@ -54,6 +56,8 @@ if [ $datex2 \> $datex3 -a $datex2 \> $datex4 -a $datex2 \> $datex5 -a $datex2 \
 then
    echo "latest snapshot is on mrv repo";
    echo "https://lisktools.io/backups/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://lisktools.io/backups/"
 
 fi;
 
@@ -61,6 +65,8 @@ if [ $datex3 \> $datex4 -a $datex3 \> $datex5 -a $datex3 \> $datex1 -a $datex3 \
 then
    echo "latest snapshot is on bioly repo";
    echo "https://s.mylisk.com/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://s.mylisk.com/"
 
 fi;
 
@@ -68,6 +74,8 @@ if [ $datex4 \> $datex5 -a $datex4 \> $datex6 -a $datex4 \> $datex1 -a $datex4 \
 then
    echo "latest snapshot is on karek repo";
    echo "https://snapshot.thepool.io/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://snapshot.thepool.io/"
 
 fi;
 
@@ -75,6 +83,8 @@ if [ $datex5 \> $datex6 -a $datex5 \> $datex1 -a $datex5 \> $datex2 -a $datex5 \
 then
    echo "latest snapshot is on corsaro repo";
    echo "https://snapshot.liskworld.info/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://snapshot.liskworld.info/"
 
 fi;
 
@@ -82,5 +92,7 @@ if [ $datex6 \> $datex1 -a $datex6 \> $datex2 -a $datex6 \> $datex3 -a $datex6 \
 then
    echo "latest snapshot is on lisk hq repo";
    echo "https://downloads.lisk.io/lisk/main/";
+   echo "rebuild using latest snapshot with:";
+   echo "bash lisk.sh rebuild -u https://downloads.lisk.io/lisk/main/"
  fi;
 

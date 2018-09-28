@@ -25,7 +25,7 @@
 
 ### /snap/bin/telegram-cli -W -e "msg xx_yy hi how are you"
 
-### > contact_list to see all contacts
+### > contact_list ## to see all contacts and to check if xx_yy contact has been memoryzed correctly
 
 
 

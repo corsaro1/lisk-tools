@@ -24,7 +24,7 @@ for i in "${delegate_array[@]}"
         fi
         done
 echo "alert bot avviato"
-curl -s -X POST https://api.telegram.org/bot$apiToken/sendMessage -d text="Alert bot avviato. Blocchi persi finora: corsaro ${s_array[0]}; splatters ${s_array[1]}; redsn0w ${s_array[2]}; vekexasia ${s_array[4]}; dakk ${s_array[5]}; hirish ${s_array[6]}; liskit ${s_array[7]}" -d chat_id=$chat_id
+curl -s -X POST https://api.telegram.org/bot$apiToken/sendMessage -d text="Alert bot avviato. Blocchi persi finora: cor ${s_array[0]}; splatters ${s_array[1]}; redsn0w ${s_array[2]}; vekexasia ${s_array[3]}; ondin ${s_array[4]}; dakk ${s_array[5]}; hirish ${s_array[6]}; liskit ${s_array[7]}" -d chat_id=$chat_id
 
 while true; do
          sleep 60

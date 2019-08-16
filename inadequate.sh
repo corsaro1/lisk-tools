@@ -2,7 +2,7 @@
 #!/bin/bash
 
 ## Check for config file
-CONFIG_FILE="mrv_config.json"
+CONFIG_FILE="mrv_config_core-1.0.json"
 
 ##  Read config file
 CONFIGFILE=$(cat "$CONFIG_FILE")

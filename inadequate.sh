@@ -1,4 +1,4 @@
-## Version 0.9.5.1
+## Version 0.9.5.1 original by @mrv
 #!/bin/bash
 
 ## Check for config file

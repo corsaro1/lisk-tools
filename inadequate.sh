@@ -1,6 +1,6 @@
-## Version 0.9.5.1 original by @mrv
 #!/bin/bash
-
+## Version 0.9.5.1 original by @mrv
+set -e
 ## Check for config file
 CONFIG_FILE="mrv_config_core-1.0.json"
 
@@ -26,7 +26,7 @@ done
 #########################
 
 #Set text delay and forging log
-TXTDELAY=1
+##TXTDELAY=1
 LASTFORGED=""
 FORGINGINLOG=0
 
@@ -50,7 +50,7 @@ function ChangeDirectory(){
 while true;
 do
 	## Get forging status of server
-	FORGE=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://"$SRV1""$PRT"/api/node/status/forging?publicKey="$PBK| jq '.data[0].forging')
+	FORGE=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://$SRV1$PRT/api/node/status/forging?publicKey=$PBK"| jq '.data[0].forging')
 	if [[ "$FORGE" == "true" ]]; ## Only check log and try to switch forging if needed, if server is currently forging
 	then
 
@@ -59,10 +59,10 @@ do
 			date +"%Y-%m-%d %H:%M:%S || ${GREEN}Forging started on node.${RESETCOLOR}"
 			FORGINGINLOG=1
 		fi
-		## Get current server's height and consensus
-		SERVERLOCAL=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://"$SRV1""$PRT"/api/node/status")
-		HEIGHTLOCAL=$( echo "$SERVERLOCAL" | jq '.data.height')
-		CONSENSUSLOCAL=$( echo "$SERVERLOCAL" | jq '.data.consensus')
+		## Get current server's height and consensus - currently unused
+		## SERVERLOCAL=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://$SRV1$PRT/api/node/status")
+		## HEIGHTLOCAL=$( echo "$SERVERLOCAL" | jq '.data.height')
+		## CONSENSUSLOCAL=$( echo "$SERVERLOCAL" | jq '.data.consensus')
 		## Get recent log
 		LOG=$(tail ~/lisk-main/logs/mainnet/lisk.log -n 10)
 		
@@ -78,10 +78,10 @@ do
 
 
 		## Check log for Inadequate consensus or Fork & Forged while forging
-		INADEQUATE=$( echo "$LOG" | grep 'Inadequate')
-		FORGEDBLOCKLOG=$( echo "$LOG" | grep 'Forged new block')
-		FORK=$( echo "$LOG" | grep 'Fork')
-		if [ -n "$INADEQUATE" ] || ([ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ]);
+		INADEQUATE=$( echo "$LOG" | grep 'Inadequate') || (( $? == 1 ))
+		FORGEDBLOCKLOG=$( echo "$LOG" | grep 'Forged new block') || (( $? == 1 ))
+		FORK=$( echo "$LOG" | grep 'Fork') || (( $? == 1 ))
+		if [ -n "$INADEQUATE" ] || { [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ]; };
 		then
 			if [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ];
 			then
@@ -91,12 +91,12 @@ do
 			fi
 			
 			## Disable forging on local server first.  If successful, loop through servers until we are able to enable forging on one
-			DISABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":false, "password":"'"$PASSWORD"'"}' https://"$SRV1""$PRTS"/api/node/status/forging | jq '.data[0].forging')
+			DISABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":false, "password":"'"$PASSWORD"'"}' https://"$SRV1$PRTS"/api/node/status/forging | jq '.data[0].forging')
 			if [ "$DISABLEFORGE" = "false" ];
 			then
 				for SERVER in "${SERVERS[@]}"
 				do
-					ENABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":true, "password":"'"$PASSWORD"'"}' https://"$SERVER""$PRTS"/api/node/status/forging | jq '.data[0].forging')
+					ENABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":true, "password":"'"$PASSWORD"'"}' https://"$SERVER$PRTS"/api/node/status/forging | jq '.data[0].forging')
 					if [ "$ENABLEFORGE" = "true" ];
 					then
 						date +"%Y-%m-%d %H:%M:%S || ${CYAN}Successsfully switching to Server $SERVER to try and forge.${RESETCOLOR}"

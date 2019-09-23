@@ -81,7 +81,7 @@ do
 		INADEQUATE=$( echo "$LOG" | grep 'Inadequate')
 		FORGEDBLOCKLOG=$( echo "$LOG" | grep 'Forged new block')
 		FORK=$( echo "$LOG" | grep 'Fork')
-		if [ -n "$INADEQUATE" ] || ([ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ]);
+		if [ -n "$INADEQUATE" ] || { [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ]; };
 		then
 			if [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ];
 			then

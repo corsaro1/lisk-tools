@@ -1,6 +1,5 @@
-## Version 0.9.5.1 original by @mrv
 #!/bin/bash
-
+## Version 0.9.5.1 original by @mrv
 set -e
 ## Check for config file
 CONFIG_FILE="mrv_config_core-1.0.json"
@@ -27,7 +26,7 @@ done
 #########################
 
 #Set text delay and forging log
-TXTDELAY=1
+##TXTDELAY=1
 LASTFORGED=""
 FORGINGINLOG=0
 
@@ -60,10 +59,10 @@ do
 			date +"%Y-%m-%d %H:%M:%S || ${GREEN}Forging started on node.${RESETCOLOR}"
 			FORGINGINLOG=1
 		fi
-		## Get current server's height and consensus
-		SERVERLOCAL=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://"$SRV1""$PRT"/api/node/status")
-		HEIGHTLOCAL=$( echo "$SERVERLOCAL" | jq '.data.height')
-		CONSENSUSLOCAL=$( echo "$SERVERLOCAL" | jq '.data.consensus')
+		## Get current server's height and consensus - currently unused
+		## SERVERLOCAL=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://$SRV1$PRT/api/node/status")
+		## HEIGHTLOCAL=$( echo "$SERVERLOCAL" | jq '.data.height')
+		## CONSENSUSLOCAL=$( echo "$SERVERLOCAL" | jq '.data.consensus')
 		## Get recent log
 		LOG=$(tail ~/lisk-main/logs/mainnet/lisk.log -n 10)
 		

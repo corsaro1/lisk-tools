@@ -1,6 +1,7 @@
 ## Version 0.9.5.1 original by @mrv
 #!/bin/bash
 
+set -e
 ## Check for config file
 CONFIG_FILE="mrv_config_core-1.0.json"
 

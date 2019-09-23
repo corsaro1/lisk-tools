@@ -78,9 +78,9 @@ do
 
 
 		## Check log for Inadequate consensus or Fork & Forged while forging
-		INADEQUATE=$( echo "$LOG" | grep 'Inadequate')
-		FORGEDBLOCKLOG=$( echo "$LOG" | grep 'Forged new block')
-		FORK=$( echo "$LOG" | grep 'Fork')
+		INADEQUATE=$( echo "$LOG" | grep 'Inadequate') || (( $? == 1 ))
+		FORGEDBLOCKLOG=$( echo "$LOG" | grep 'Forged new block') || (( $? == 1 ))
+		FORK=$( echo "$LOG" | grep 'Fork') || (( $? == 1 ))
 		if [ -n "$INADEQUATE" ] || { [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ]; };
 		then
 			if [ -n "$FORK" ] && [ -n "$FORGEDBLOCKLOG" ];

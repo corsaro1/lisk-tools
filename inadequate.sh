@@ -50,7 +50,7 @@ function ChangeDirectory(){
 while true;
 do
 	## Get forging status of server
-	FORGE=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://"$SRV1""$PRT"/api/node/status/forging?publicKey="$PBK| jq '.data[0].forging')
+	FORGE=$(curl --connect-timeout 1 --retry 3 --retry-delay 0 --retry-max-time 3 -s "http://$SRV1$PRT/api/node/status/forging?publicKey=$PBK"| jq '.data[0].forging')
 	if [[ "$FORGE" == "true" ]]; ## Only check log and try to switch forging if needed, if server is currently forging
 	then
 
@@ -91,12 +91,12 @@ do
 			fi
 			
 			## Disable forging on local server first.  If successful, loop through servers until we are able to enable forging on one
-			DISABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":false, "password":"'"$PASSWORD"'"}' https://"$SRV1""$PRTS"/api/node/status/forging | jq '.data[0].forging')
+			DISABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":false, "password":"'"$PASSWORD"'"}' https://"$SRV1$PRTS"/api/node/status/forging | jq '.data[0].forging')
 			if [ "$DISABLEFORGE" = "false" ];
 			then
 				for SERVER in "${SERVERS[@]}"
 				do
-					ENABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":true, "password":"'"$PASSWORD"'"}' https://"$SERVER""$PRTS"/api/node/status/forging | jq '.data[0].forging')
+					ENABLEFORGE=$(curl -s -S --connect-timeout 6 -k -H "Content-Type: application/json" -X PUT -d '{"publicKey":"'"$PBK"'", "forging":true, "password":"'"$PASSWORD"'"}' https://"$SERVER$PRTS"/api/node/status/forging | jq '.data[0].forging')
 					if [ "$ENABLEFORGE" = "true" ];
 					then
 						date +"%Y-%m-%d %H:%M:%S || ${CYAN}Successsfully switching to Server $SERVER to try and forge.${RESETCOLOR}"
